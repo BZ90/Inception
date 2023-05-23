@@ -10,6 +10,8 @@ down:
 
 up:
 	@echo "$(GREEN)Building and Starting Containers$(PLAIN)"
+	@mkdir -p /home/bzawko/data/mysql
+	@mkdir -p /home/bzawko/data/wordpress
 	docker compose -f ./srcs/docker-compose.yml up --build
 
 start:
@@ -27,6 +29,6 @@ prune:
 clean: down prune
 	@echo "$(RED)Removing volumes$(PLAIN)"
 	@docker volume rm srcs_mariadb_data srcs_wordpress_files
-	@rm -rf /home/bzawko/data/mysql/* /home/bzawko/data/wordpress/*
+	@rm -rf /home/bzawko/data/mysql /home/bzawko/data/wordpress
 
 .PHONY: all down up clean
