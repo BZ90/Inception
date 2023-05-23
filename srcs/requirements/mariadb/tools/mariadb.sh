@@ -51,10 +51,12 @@ echo "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; FLUSH
 
 echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'; GRANT SELECT ON $MYSQL_DATABASE.* to '$MYSQL_READONLY_USER'@'%' IDENTIFIED BY '$MYSQL_READONLY_PASSWORD'; FLUSH PRIVILEGES;" | mysql -u root -p$MYSQL_ROOT_PASSWORD
 
+echo "USE mysql; UPDATE user SET plugin = 'mysql_native_password' WHERE User = 'root'; FLOSH PRIVILEGES;" | mysql -u root -p$MYSQL_ROOT_PASSWORD
+
 mysql -u root -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.sql
 
 fi
 
-/etc/init.d/mysql stop
+/usr/bin/mysqladmin -u root -p$MYSQL_ROOT_PASSWORD shutdown
 
 exec "$@"
