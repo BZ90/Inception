@@ -56,6 +56,5 @@ mysql -u root -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE < /usr/local/bin/wordpress.
 fi
 
 /etc/init.d/mysql stop
-kill 176
 
 exec "$@"
