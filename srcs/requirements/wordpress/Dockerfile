@@ -6,8 +6,6 @@ WORKDIR	/
 # Installs the things required to install and run wordpress
 RUN	apt-get update
 RUN	apt-get install -y wget php php-cgi php-mysql php-fpm
-# This next line is probably unnecessary
-RUN	apt-get install -y php-pdo php-gd php-cli php-mbstring redis php-redis
 RUN	rm -rf /var/lib/apt/lists/*
 
 # Installs the wordpress CommandLineInterface
