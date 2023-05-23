@@ -26,7 +26,7 @@ prune:
 
 clean: down prune
 	@echo "$(RED)Removing volumes$(PLAIN)"
-	@docker volume rm $$(docker volume ls -q)
-	@rm -rf /home/ben/data/mysql/* /home/ben/data/wordpress/*
+	@docker volume rm srcs_mariadb_data srcs_wordpress_files
+	@rm -rf /home/bzawko/data/mysql/* /home/bzawko/data/wordpress/*
 
 .PHONY: all down up clean
